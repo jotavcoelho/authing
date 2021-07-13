@@ -1,5 +1,5 @@
 import { AppProps } from 'next/app';
-import { AuthProvider } from '../contexts/AuthContexts';
+import { AuthProvider } from '../contexts/AuthContext';
 
 import '../styles/global.css';
 

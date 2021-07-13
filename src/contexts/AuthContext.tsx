@@ -55,6 +55,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         maxAge: 60 * 60 * 24 * 30, // 1 month
         path: '/',
       });
+      
       setCookie(undefined, 'authing.refreshToken', refreshToken, {
         maxAge: 60 * 60 * 24 * 30, // 1 month
         path: '/',
