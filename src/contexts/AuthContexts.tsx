@@ -1,7 +1,7 @@
-import { Sign } from "crypto";
 import Router from "next/router";
 import { createContext, ReactNode, useState } from "react";
 import { api } from "../services/api";
+import { setCookie } from 'nookies';
 
 type User = {
   email: string;
@@ -38,7 +38,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
         password
       });
 
-      const { permissions, roles } = response.data;
+      const { token, refreshToken, permissions, roles } = response.data;
+
+      setCookie(undefined, 'authing.token', token, {
+        maxAge: 60 * 60 * 24 * 30, // 1 month
+        path: '/',
+      });
+      setCookie(undefined, 'authing.refreshToken', refreshToken, {
+        maxAge: 60 * 60 * 24 * 30, // 1 month
+        path: '/',
+      });
 
       setUser({
         email,
